@@ -28,3 +28,18 @@ db.create_all()
 def home():
     all_chores = db.session.query(Chores).all()
     return render_template('index.html', chores=all_chores)
+
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        new_chore = Chores(
+            description=request.form["description"],
+            frequency=request.form["frequency"],
+            date=request.form["date"]
+        )
+        db.session.add(new_chore)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template("log_chores.html")
+
