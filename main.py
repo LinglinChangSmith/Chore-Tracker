@@ -23,3 +23,8 @@ class Chores(db.Model):
 
 db.create_all()
 
+
+@app.route("/")
+def home():
+    all_chores = db.session.query(Chores).all()
+    return render_template('index.html', chores=all_chores)

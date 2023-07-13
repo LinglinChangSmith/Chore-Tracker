@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Chores Tracker{% endblock %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='pics/cleaning.png') }}" alt="Chores Icons by Lilly" width="300">
+    <div class="align">
+        <h1>TRACK YOUR CHORES WITH ME</h1>
+        <a href="{{ url_for('add') }}">Log your chores</a>
+        <ul>
+            {% for chore in chores %}
+            <li>
+                {{ chore.description }}  ||  How often: {{ chore.frequency }}  ||  Last time doing it: {{ chore.date }}
+                || <a href="{{ url_for('update', id=chore.id) }}">Update</a>
+                || <a href="{{ url_for('delete', id=chore.id) }}">Delete</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
