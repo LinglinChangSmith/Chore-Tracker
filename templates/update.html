@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'bootstrap/base.html' %}
 
-</body>
-</html>
+{% block styles %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Date Update{% endblock %}
+
+{% block content %}
+<img src="{{ url_for('static', filename='pics/cleaning.png') }}" alt="Chores Icons by Lilly" width="300">
+<div class="align">
+    <form action="{{ url_for('update') }}" method="POST">
+        <p>Chore Name: {{ chore.description }}</p>
+        <p>Last Date on Record: {{ chore.date }}</p>
+        <input hidden="hidden" name="id" value="{{ chore.id }}">
+        <input name="date" type="text" placeholder="New date">
+        <button type="submit">Update Chore Date</button>
+    </form>
+</div>
+{% endblock %}
