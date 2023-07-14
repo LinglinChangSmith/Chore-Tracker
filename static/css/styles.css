@@ -1,0 +1,20 @@
+body {
+    background-color: #f6dfe6;
+    color: #465198;
+}
+
+a {
+    color: #d05977;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 20%
+}
+
+.align {
+    margin-left: 300px;
+}
