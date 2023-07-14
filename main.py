@@ -44,5 +44,18 @@ def add():
     return render_template("log_chores.html")
 
 
+@app.route("/update", methods=["GET", "POST"])
+def update():
+    if request.method == "POST":
+        chore_id = request.form["id"]
+        chore_to_update = Chores.query.get(chore_id)
+        chore_to_update.date = request.form["date"]
+        db.session.commit()
+        return redirect(url_for('home'))
+    chore_id = request.args.get('id')
+    chore_selected = Chores.query.get(chore_id)
+    return render_template("update.html", chore=chore_selected)
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
