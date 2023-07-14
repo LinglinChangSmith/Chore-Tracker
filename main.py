@@ -43,3 +43,6 @@ def add():
         return redirect(url_for('home'))
     return render_template("log_chores.html")
 
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8000)
