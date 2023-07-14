@@ -3,3 +3,24 @@
 {% block styles %}
 {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+
+{% block title %}Log Chores!{% endblock%}
+
+{% block content %}
+<img src="{{ url_for('static', filename='pics/cleaning.png') }}" alt="Chores Icons by Lilly" width="300">
+<div class="align">
+    <form action="{{ url_for('add') }}" method="POST">
+        <label>Chore Description</label>
+        <input name="description" type="text">
+        <br>
+        <label>Frequency</label>
+        <input name="frequency" type="text">
+        <br>
+        <label>Date</label>
+        <input name="date" type="text">
+        <br>
+        <button type="submit">Log me now!</button>
+    </form>
+</div>
