@@ -57,5 +57,13 @@ def update():
     return render_template("update.html", chore=chore_selected)
 
 
+@app.route("/delete", methods=["GET", "POST"])
+def delete():
+    chore_id = request.args.get('id')
+    chore_to_delete = Chores.query.get(chore_id)
+    db.session.delete(chore_to_delete)
+    return redirect(url_for('home'))
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
