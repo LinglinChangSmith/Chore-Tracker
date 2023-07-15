@@ -62,6 +62,7 @@ def delete():
     chore_id = request.args.get('id')
     chore_to_delete = Chores.query.get(chore_id)
     db.session.delete(chore_to_delete)
+    db.session.commit()
     return redirect(url_for('home'))
 
 
